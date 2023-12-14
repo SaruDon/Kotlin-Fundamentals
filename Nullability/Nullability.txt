@@ -1,0 +1,70 @@
+fun main() {
+    var favoriteActor: String = "Sandra Oh"
+    favoriteActor = null
+}
+
+
+    1. **Variable Declaration**: `var favoriteActor: String = "Sandra Oh"` declares a variable named `favoriteActor` of type `String`.
+
+    2. **Non-Nullable Type**: The type `String` means it can only hold a non-null string value.
+
+    3. **Nullable Assignment Error**: `favoriteActor = null` assigns a `null` value to `favoriteActor`.
+
+    4. **Compilation Error**: This causes a compilation error because you're trying to assign a null value to a variable that was declared as non-nullable.
+
+    5. **Nullable Declaration Fix**: To allow null values, you should declare the variable as nullable by adding `?` to the type, like this: `var favoriteActor: String? = "Sandra Oh"`. 
+    Now, it can hold either a string or a null value.
+
+    In Kotlin, specifying whether a variable can be null is an essential part of its type declaration.
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+fun main() {
+    var favoriteActor: String? = "Sandra Oh"
+    println(favoriteActor.length)
+}
+
+    1. **Nullable Variable**: `var favoriteActor: String? = "Sandra Oh"` declares a nullable variable named `favoriteActor`
+     that can hold either a string or a null value.
+
+    2. **Accessing Property**: `favoriteActor.length` attempts to access the `length` property of 
+    `favoriteActor`.
+
+    3. **Safe-Call Operator**: Replace the `.` with `?.` in the `println()` statement: `println(favoriteActor?.length)`
+
+    4. **Safe Access**: The `?.` safe-call operator ensures that if `favoriteActor` is `null`, the attempt to access `length` will return `null` 
+    instead of causing a null pointer exception.
+
+    5. **Safe Output**: This makes the code safer because it won't crash if `favoriteActor` is `null`, and it will print
+     the length if `favoriteActor` has a non-null value.
+
+    Using `?.` is a good practice when working with nullable variables to avoid runtime crashes due to null references.
+
+
+    -------------------------------------
+
+
+    Use the !! not-null assertion operator
+
+
+
+1. **Not-Null Assertion Operator (`!!`)**: `!!` is called the not-null assertion operator in Kotlin.
+   
+2. **Purpose**: It is used to assert that a nullable variable is not null, even if the compiler cannot guarantee it.
+
+3. **Accessing Property**: `favoriteActor!!.length` attempts to access the `length` property of `favoriteActor`.
+
+4. **Risk**: Unlike the safe-call operator (`?.`), using `!!` doesn't perform a null check. It asserts that the variable is 
+non-null, and if it's actually null, it may result in a `NullPointerException` at runtime.
+
+5. **Use Caution**: It should be used with caution and only when you are certain that the variable 
+is non-null at that point. Otherwise, it can lead to runtime errors.
+
+6. **Example Code**: The provided code snippet reassigns `favoriteActor` to a non-null 
+value (`"Sandra Oh"`) and then uses `!!` to assert its non-null status before accessing the `length` property.
+
+Remember, using `!!` is a powerful tool, but it removes the safety net provided by Kotlin's 
+null safety features. It's generally recommended to use safe calls (`?.`) where possible to avoid 
+unexpected runtime errors.

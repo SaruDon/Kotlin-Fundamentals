@@ -1,0 +1,42 @@
+Store a function in a variable
+    fun main() {
+        val trickFunction = ::trick
+    }
+
+    fun trick() {
+        println("No treats!")
+    }
+
+-----------------------------------------------
+
+
+ lambda expression
+    For eg
+    1)       fun main() {
+                val trickFunction = trick
+            }
+
+            val trick = {
+                println("No treats!")
+            }
+
+    2)
+            fun main() {
+                val trickFunction = trick
+                trick()
+                trickFunction()
+            }
+
+            val trick = {
+                println("No treats!")
+            }        
+
+    3)
+        fun main() {
+            val coins: (Int) -> String = {
+                "$it quarters"
+            }
+
+            string template to refer to the single parameter using $it.
+        }        
+
