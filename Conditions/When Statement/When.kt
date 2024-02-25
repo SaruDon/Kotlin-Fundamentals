@@ -1,5 +1,5 @@
 fun main() {
-    val x: Any = 20
+    val x: Any = 2
 
     when (x) {
         2, 3, 5, 7 -> println("x is a prime number between 1 and 10.")
