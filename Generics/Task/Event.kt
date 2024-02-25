@@ -1,5 +1,4 @@
-
-
+// Data class representing an event with details like title, description, daypart, and duration
 data class Event(
     val title: String,
     val description: String? = null,
@@ -7,12 +6,14 @@ data class Event(
     val durationInMinutes: Int,
 )
 
-enum class Daypart{
-    MORNING,AFTERNOON,EVENING
+// Enum class representing different parts of the day
+enum class Daypart {
+    MORNING, AFTERNOON, EVENING
 }
 
-
-class work{
+// Class representing work-related events
+class Work {
+    // Example events with different details
     val event1 = Event(title = "Wake up", description = "Time to get up", daypart = Daypart.MORNING, durationInMinutes = 0)
     val event2 = Event(title = "Eat breakfast", daypart = Daypart.MORNING, durationInMinutes = 15)
     val event3 = Event(title = "Learn about Kotlin", daypart = Daypart.AFTERNOON, durationInMinutes = 30)
@@ -20,25 +21,30 @@ class work{
     val event5 = Event(title = "Watch latest DevBytes video", daypart = Daypart.AFTERNOON, durationInMinutes = 10)
     val event6 = Event(title = "Check out latest Android Jetpack library", daypart = Daypart.EVENING, durationInMinutes = 45)
 
-    var eventList = listOf(event1,event2,event3,event4,event5,event6)
-    var eventGrp = eventList.groupBy { it.durationInMinutes<60 }
+    // List of all events
+    var eventList = listOf(event1, event2, event3, event4, event5, event6)
 
-    var morning = eventList.groupBy { it.daypart==Daypart.MORNING }
+    // Group events based on whether their duration is less than 60 minutes
+    var eventGrp = eventList.groupBy { it.durationInMinutes < 60 }
+
+    // Group events based on the daypart
+    var morning = eventList.groupBy { it.daypart == Daypart.MORNING }
     var grpEvents = eventList.groupBy { it.daypart }
-    
 }
 
-
+// Main function to demonstrate the Work class and print information about events
 fun main() {
-    
-    for (event in work().eventList) {
-        println("Event name :${event.title}")
+    // Iterate through the list of events and print their titles
+    for (event in Work().eventList) {
+        println("Event name: ${event.title}")
     }
 
-
-    println("Shoet event")
-    println("You have : ${work().eventGrp.size} short events")
-    work().grpEvents.forEach(){ (daypart,events)->
-        println("$daypart :${events.size} events")
+    // Display information about short events
+    println("Short events:")
+    println("You have: ${Work().eventGrp.size} short events")
+    
+    // Iterate through grouped events by daypart and print the count of events for each daypart
+    Work().grpEvents.forEach { (daypart, events) ->
+        println("$daypart: ${events.size} events")
     }
 }
